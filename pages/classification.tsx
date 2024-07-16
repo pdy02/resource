@@ -64,9 +64,10 @@ export default function Classification(props: Props) {
         // 遍历map
         const temp = {};
         classifyMap.forEach(t => {
+            // @ts-ignore
             temp[t.name] = "all";
             // 看看query参数有没有同名的, 有的话覆盖
-            // console.log("tag: ", route, t.name, route[t.name]);
+            // @ts-ignore
             router.query[t.name] && (temp[t.name] = router.query[t.name]);
         })
         return temp as ClasType
@@ -204,6 +205,7 @@ export default function Classification(props: Props) {
                 const k = itemType.split('-')[0]
                 const v = itemType.split('-')[1];
                 // 当前选项(clas)不等于该项目类型, 并且不是选择全部('all')
+                // @ts-ignore
                 if ((clas[k] !== v) && (clas[k] !== 'all')) {
                     tempBool = false;
                 };

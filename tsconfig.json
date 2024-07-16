@@ -18,8 +18,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "ignoreDeprecations": "5.0",
-    "suppressImplicitAnyIndexErrors":true // 隐式抑制任何索引错误
+//    "suppressImplicitAnyIndexErrors":true // 隐式抑制任何索引错误
   },
   "include": [
     "next-env.d.ts",

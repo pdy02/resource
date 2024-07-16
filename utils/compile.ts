@@ -46,10 +46,14 @@ function handleLine(line: string){
                 resList.push(item)
                 continue
             }
+            // @ts-ignore
             const itemVal = item[itemKey];
+            // @ts-ignore
             if (temp[itemKey] === undefined) {
+                // @ts-ignore
                 temp[itemKey] = ''
             }
+            // @ts-ignore
             temp[itemKey] += itemVal
         }
     })
