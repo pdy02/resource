@@ -1,0 +1,103 @@
+.container{
+  padding-top: calc(60px + var(--margin));
+}
+
+
+
+
+/*.box_title{*/
+/*  padding: var(--margin) 0;*/
+/*  !*font-size: var(--font-size-big);*!*/
+/*}*/
+
+/* # 单独类样式 */
+
+/*大标题*/
+.h1{
+  font-size: var(--font-size-big);
+  font-weight: bold;
+  padding: var(--margin) 0;
+  /*vertical-align: center;*/
+  & > span{
+    vertical-align: middle;
+  }
+  & >img{
+    width: 50px;
+    height: 50px;
+    margin-right: 8px;
+    object-fit: cover;
+    vertical-align: middle;
+  }
+}
+
+/*一个版块标题*/
+.title{
+  padding: var(--margin);
+  background-color: #eee;
+  position: relative;
+  font-weight: bold;
+  &:before{
+    content: "";
+    width: 4px;
+    height: 100%;
+    background-color: var(--theme-color);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+/*一个版块内容区域*/
+.ctn{
+  padding: var(--margin) 0;
+  letter-spacing: 2px;
+}
+
+/*一个版块的内容列表项*/
+.list{
+  padding: var(--margin) 0;
+  counter-reset: section;
+  word-wrap: break-word;
+  .list_item{
+    padding-bottom: var(--margin);
+    text-overflow: ellipsis;
+    text-wrap: wrap;
+    &:before{
+      counter-increment: section;
+      content: counter(section) ". ";
+    }
+  }
+  /*资源列表*/
+  .list_resource_item{
+    padding: var(--margin) 0;
+
+    & > span{
+      font-weight: bold;
+      /*padding-right: 0.5em;*/
+      &:after{
+        content:"："
+      }
+    }
+    & > a{
+      transition: background-size .5s, color .2s;
+      /*display: inline;*/
+      /*text-overflow: ellipsis;*/
+      /*text-wrap: wrap;*/
+      /*overflow-x: hidden;*/
+      /*word-wrap: break-word;*/
+      padding-bottom: 2px;
+      background: linear-gradient(
+              to right,
+              rgb(66, 184, 131),
+              rgb(66, 184, 131)
+      ) no-repeat right bottom;
+      background-size: 0 2px;
+
+      &:hover{
+        color: var(--theme-color);
+        background-size: 100% 2px;
+        background-position: left bottom;
+      }
+    }
+  }
+}

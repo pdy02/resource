@@ -1,0 +1,153 @@
+{
+  "list": [
+    {
+      "name": "Vue",
+      "url": "https://vuejs.org/",
+      "ico": "https://vuejs.org/logo.svg",
+      "id": "",
+      "type": [
+        "sys-web",
+        "type-com"
+      ],
+      "tags": [
+        "前端",
+        "框架"
+      ],
+      "info": "一个前端框架"
+    },
+    {
+      "name": "React",
+      "ico": "https://react.dev/apple-touch-icon.png",
+      "url": "https://react.dev/",
+      "type": ["sys-web", "type-com"],
+      "tag": ["前端", "库"],
+      "info": "一个前端开发的js库"
+    },
+    {
+      "name": "Node",
+      "url": "https://nodejs.org/",
+      "ico": "https://nodejs.org/static/images/favicons/favicon.png",
+      "type": ["sys-web", "type-com"],
+      "tag": ["前端构建", "后端"],
+      "info": "一个JavaScript运行时"
+    },
+    {
+      "name": "MDN",
+      "ico": "https://developer.mozilla.org/favicon-48x48.cbbd161b.png",
+      "url": "https://developer.mozilla.org/zh-CN/",
+      "type": ["sys-web", "type-com"],
+      "info": "前端HTML/CSS/JS的开发文档"
+    },
+    {
+      "name": "Electron",
+      "url": "https://www.electronjs.org/zh/",
+      "ico": "https://www.electronjs.org/zh/assets/img/favicon.ico",
+      "type": ["sys-web", "type-com"],
+      "info": "nodeJS的桌面开发框架"
+    },
+    {
+      "name": "Element",
+      "ico": "http://icon.hhpp.net/get.php?url=https://element.eleme.cn/",
+      "url": "https://element.eleme.cn/#/zh-CN",
+      "type": ["sys-web", "type-com"],
+      "tag": ["前端", "UI框架", "Vue"],
+      "info": "一款前端UI框架, 比较适用于vue"
+    },
+    {
+      "name": "Ant Design",
+      "url": "https://ant-design.antgroup.com/index-cn",
+      "ico": "https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png",
+      "type": ["sys-web", "type-com"],
+      "tag": ["前端", "UI框架", "React"],
+      "info": "一款前端UI框架, 比较适用于React"
+    },
+    {
+      "name": "Uni-App",
+      "url": "https://uniapp.dcloud.net.cn/",
+      "ico": "https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/icon.png?v=1556263038788\n",
+      "type": ["sys-web", "type-com"],
+      "tag": ["前端", "vue", "移动端"],
+      "info": "一个vue.js的框架, 一套代码可以跨平台"
+    },
+    {
+      "name": "Svelte",
+      "url": "https://www.svelte.cn/",
+      "ico": "https://www.svelte.cn/favicon.png",
+      "type": ["sys-web", "type-com"],
+      "tag": ["前端", "框架"],
+      "info": "Svelte 是一种全新的构建用户界面的框架"
+    },
+    {
+      "name": "NPM",
+      "url": "https://www.npmjs.com/",
+      "ico": "https://static-production.npmjs.com/58a19602036db1daee0d7863c94673a4.png",
+      "type": ["sys-web", "type-com"],
+      "tag": ["前端构建", "node", "构建", "包管理器"],
+      "info": "nodejs的一款包管理工具"
+    },
+    {
+      "name": "PNPM",
+      "url": "https://pnpm.io/zh/",
+      "ico": "https://pnpm.io/zh/img/favicon.png",
+      "type": ["sys-web", "type-com"],
+      "tag": ["前端构建", "node", "构建", "包管理器"],
+      "info": "nodejs的一款包管理工具"
+    },
+    {
+      "name": "Yarn",
+      "url": "https://www.yarnpkg.cn/",
+      "ico": "https://www.yarnpkg.cn/favicon-32x32.png?v=775b53071ebde4f6d738805a2d9fcb72",
+      "type": ["sys-web", "type-com"],
+      "tag": ["前端构建", "node", "构建", "包管理器"],
+      "info": "nodeJs的一款包管理工具"
+    },
+    {
+      "name": "开源阅读",
+      "url": "https://github.com/gedoor/legado",
+      "ico": "https://www.yckceo.com/static/img/yuedu.png",
+      "type": ["sys-an", "type-game"],
+      "tag": ["小说", "书源", "开源"],
+      "info": "一款开源的小说软件, 可导入定制书源阅读"
+    },
+    {
+      "name": "源仓库",
+      "url": "https://www.yckceo.com/",
+      "ico": "https://www.yckceo.com/favicon.ico",
+      "type": ["sys-web", "type-game"],
+      "tag": ["小说", "漫画源", "书源", "开源"],
+      "info": "一个源仓库, 里面有【阅读】和【异次元】的源"
+    },
+    {
+      "name": "异次元",
+      "url": "https://yiciyuan.lanzoui.com/b00ej0kba",
+      "ico": "https://www.yckceo.com/static/img/yiciyuan.png",
+      "type": ["sys-an", "type-game"],
+      "tag": ["漫画", "漫画源", "开源"],
+      "info": "类似于开源阅读, 这也是一个可以导入自定义书源的漫画观看软件"
+    },
+    {
+      "name": "Tvbox",
+      "url": "https://github.com/CatVodTVOfficial/TVBoxOSC",
+      "ico": "https://www.yckceo.com/static/img/app/tvbox.png",
+      "type": ["sys-an", "type-game"],
+      "tag": ["电视", "视频", "开源"],
+      "info": "一个看剧的开源软件,导入播放源即可"
+    },
+    {
+      "name": "网飞猫",
+      "url": "https://www.ncat1.app/",
+      "ico": "https://61.147.93.252:15001/vod_pc_static_ncat/images/p/logo.png?ver=240716",
+      "type": ["sys-an", "sys-web", "type-game"],
+      "tag": ["电视", "视频", "平台"],
+      "info": "一个看剧的软件和网站, app内无广告"
+    },
+    {
+      "name": "omoFun",
+      "ico": "https://pic1.zhimg.com/80/v2-590986d0c3809b130e453b2907daaa9c_1440w.png",
+      "url": "https://omoget.com/#/android",
+      "type": ["sys-an", "sys-ios", "type-game"],
+      "tag": ["番剧", "动漫"],
+      "info": "一个免费看番剧的app, 视频高清无广, 但是app有广"
+    }
+  ]
+}

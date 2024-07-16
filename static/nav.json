@@ -1,0 +1,39 @@
+[
+  {
+    "title": "娱乐向",
+    "href": "#",
+    "child": [
+      {
+        "list": [
+          {
+            "name": "番剧"
+          },{
+            "name": "小说漫画"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "编程向",
+    "href": "#",
+    "child": [
+      {
+        "group_title": "资源",
+        "list": [
+          {
+            "name": "vue",
+            "href": "#"
+          },{
+            "name": "react",
+            "href": "#"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "学习向",
+    "href": "#"
+  }
+]

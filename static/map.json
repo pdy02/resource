@@ -1,0 +1,22 @@
+{
+  "type_map": {
+    "sys": {
+      "title": "系统",
+      "values": {
+        "windows": "win",
+        "mac": "mac",
+        "an": "安卓",
+        "ios": "IOS",
+        "web": "网页"
+      }
+    },
+    "type": {
+      "title": "类别",
+      "values": {
+        "com": "编程",
+        "game": "娱乐",
+        "learn": "学习"
+      }
+    }
+  }
+}

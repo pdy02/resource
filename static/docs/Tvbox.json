@@ -1,0 +1,19 @@
+{
+  "title": "Tvbox",
+  "ico": "https://www.yckceo.com/static/img/app/tvbox.png",
+  "info": "一个看剧的框架, 它是一个开源的框架, 目前市面上有很多以它为核心的二次开发UI的软件. 只要添加源,即可观看",
+  "adv": [
+    "免费观看",
+    "无广告",
+    "可以在电视机上安装, 在电视机上观看电视"
+  ],
+  "dis": [
+    "二次开发的软件太多",
+    "它的源对于一般用户来说比较难找到好的",
+    "开源版已很久没人维护更新，所以现在网上大部分都是根据该版二开衍生的各种版本"
+  ],
+  "resource_link": [
+    ["官方的github仓库", "https://github.com/CatVodTVOfficial/TVBoxOSC"],
+    ["其他用户网盘分享", "https://drive.uc.cn/s/f9a5433dca794"]
+  ]
+}

@@ -1,5 +1,43 @@
+html{
+  /*文本*/
+  --title: "DY-Collect"; /*网站title*/
+
+  /*颜色*/
+  /*--global-bg-color: #efefef;*/
+  --global-bg-color: #fff;
+  --global-bg-color-light: #f8f9fa;
+  --bg-color: #fff;
+  --text-color: #213547;
+  --theme-color: #42B883;
+  --box-shadow:#cacaca; /*盒子阴影*/
+
+  /*尺寸*/
+  --margin: 16px; /*间距*/
+  --proportion:75%; /*内容区宽度比例*/
+  @media (width < 500px){
+    --proportion: 90%;
+  }
+  --mobile-width:500px; /*移动端宽度*/
+
+  /*字体*/
+  --font-size:16px;
+  --font-size-small:12px;
+  --font-size-big:20px;
+}
+
+html[data-theme="dark"] {
+  /*颜色*/
+  /*--global-bg-color: #efefef;*/
+  --global-bg-color: #1A1A1A;
+  --bg-color: #1A1A1A;
+  --text-color: #ffffffDE;
+  --box-shadow: #999999;
+}
+
 html,
 body {
+  color: var(--text-color);
+  background-color: var(--global-bg-color);
   padding: 0;
   margin: 0;
   font-family:
@@ -20,13 +58,81 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1rem;
 }
 
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
 img {
   max-width: 100%;
   height: auto;
+}
+
+button{
+  cursor: pointer;
+}
+
+span.iconfont{
+  cursor: pointer;
+}
+
+ul{
+  list-style: none;
+}
+
+/*全局类*/
+
+/*规范边距*/
+.pad-l-r{
+  padding-left: var(--margin);
+  padding-right: var(--margin);
+}
+
+/*输入表单样式*/
+.input-style{
+  border: solid 1px var(--text-color);
+  padding-left: var(--margin);
+  outline: none;
+  background-color: var(--global-bg-color);
+  border-radius: 40px;
+}
+
+/*绝对定位居中*/
+.pos-middle{
+  position: absolute;
+  /*top: 50%;*/
+  /*right: 50%;*/
+  transform: translate(-50%, -50%);
+}
+
+.flex{
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}
+
+.transition{
+  transition: all .2s;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.container{
+  width: var(--proportion);
+  margin: auto;
 }

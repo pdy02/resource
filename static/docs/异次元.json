@@ -1,0 +1,18 @@
+{
+  "title": "异次元",
+  "ico": "https://www.yckceo.com/static/img/yiciyuan.png",
+  "info": "一个看漫画的软件, 可以自己导入漫画源，也可以自制漫画源，类似【开源阅读】一般。没有官方的网站， 但是有官方的微信公众号，就叫\"异次元APP软件\"",
+  "adv": [
+    "免费",
+    "自由制作源和导入",
+    "提供下载接口，可以下载漫画备份，无需担心源失效"
+  ],
+  "dis": [
+    "目前官方漫画源太少，找第三方源麻烦"
+  ],
+  "resource_link": [
+    ["官方下载地址", "https://yiciyuan.lanzoui.com/b00ej0kba"],
+    ["公共号图源", "https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU1OTA0OTExMg==&action=getalbum&album_id=1541817496159240192&scene=173&from_msgid=2247486542&from_itemidx=1&count=3&nolastread=1#wechat_redirect"],
+    ["源仓库的异次元图源", "https://www.yckceo.com/yiciyuan/tuyuan/index.html"]
+  ]
+}

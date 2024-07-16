@@ -1,0 +1,11 @@
+{
+  "title":"Vue",
+  "ico": "https://vuejs.org/logo.svg",
+  "info": "一个热门的前端框架",
+  "adv": [
+    "中文文档阅读良好"
+  ],
+  "resource_link": [
+    ["官方中文文档", "https://cn.vuejs.org/"]
+  ]
+}

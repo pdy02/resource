@@ -1,0 +1,19 @@
+{
+  "title":"开源阅读",
+  "ico": "https://www.yckceo.com/static/img/yuedu.png",
+  "info": "一个开源的阅读小说软件",
+  "adv": [
+    "免费",
+    "导入做好的书源即可随意使用"
+  ],
+  "dis": [
+    "有些书源不稳定",
+    "有漫画源, 但是漫画阅读体验一般"
+  ],
+  "resource_link": [
+    ["官方地址", "https://gedoor.github.io/"],
+    ["书源", "https://legado.aoaostar.com/"],
+    ["源仓库的书源", "https://www.yckceo.com/yuedu/shuyuan/index.html"],
+    ["书源制作规则", "https://celetor.github.io/teachme/Rule/source.html"]
+  ]
+}

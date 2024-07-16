@@ -1,0 +1,18 @@
+{
+  "title": "网飞猫",
+  "ico": "https://61.147.93.252:15001/vod_pc_static_ncat/images/p/logo.png?ver=240716",
+  "info": "一个看剧的平台, 也可以下载app. 应用内没有广告, 但是它的抓取的视频源内大多数有广告",
+  "adv": [
+    "免费, 无广",
+    "有web版和安卓版、ios版、windows和tv版",
+    "邮箱：ncat9527@gmail.com"
+  ],
+  "dis": [
+    "视频源内的视频会插播广告, 太伤了"
+  ],
+  "resource_link": [
+    ["官方发布页", "https://dl.ncat1.app/#app"],
+    ["web版", "https://www.ncat1.app/"],
+    ["下载", "https://dl.ncat1.app/#app"]
+  ]
+}

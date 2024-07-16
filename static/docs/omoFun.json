@@ -1,0 +1,21 @@
+{
+  "title": "omoFun",
+  "ico": "https://pic1.zhimg.com/80/v2-590986d0c3809b130e453b2907daaa9c_1440w.png",
+  "info": "一个专门看番剧的软件",
+  "adv": [
+    "免费看番剧",
+    "资源多而全",
+    "资源高清无广",
+    "支持下载, 也可以开启web服务, 在电脑端访问观看"
+  ],
+  "dis": [
+    "app内广告挺多, 硬伤, 不过可以忍受",
+    "只提供了安卓和ios的软件, 没有web版",
+    "omofun(o站)真真假假太多了"
+  ],
+  "resource_link": [
+    ["发布页", "https://omoget.com/#/android"],
+    ["其他番剧网站", "https://omofun.in/"],
+    ["omofun纯净版(第三方),提取码:Le3y", "https://www.123pan.com/s/qQVA-zqyrh.html"]
+  ]
+}
