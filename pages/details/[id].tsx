@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import NavigationBar from '../../components/global/navigationBar';
 import sty from '../../styles/modules/detailes.module.css'
-import {GetServerSideProps} from 'next'
+import { GetStaticProps } from 'next'
 
 interface IPorps {
     navData: NavT
@@ -70,33 +70,62 @@ type Context = {
     }
 }
 
-export const getServerSideProps:　GetServerSideProps = async ({query}) => {
-    console.log("query: ", query);
-    if (!query.id){
-        return {
-            notFound: true
-        }
-    }
-    const nav = await fetch(process.env.BASE_URL + '/static/nav.json');
-    let resJson;
-    let pall;
-    try{
-        resJson = await fetch(`${process.env.BASE_URL}/static/docs/${(query.id as string).toLowerCase()}.json`);
-        pall = await Promise.all([nav.json(), resJson.json()]) as unknown as [ NavT, DetailsT ];
-    }catch(error){
-        console.log("加载页面数据错误: ", error);
-        return {
-            notFound: true
-        }
-    }
-    
-    const [ navData, res ] = pall;
-    
+export async function getStaticPaths() {
+    // const res = await fetch('https://.../posts')
+    // const posts = await res.json()
+    const posts = [
+        "vue","开源阅读","omoFun","异次元","源仓库","网飞猫","Tvbox"
+    ]
+
+    const paths = posts.map((post) => ({
+        params: { id: post },
+    }))
+
+    return { paths, fallback: false }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+    const data = await import('../../static/nav.json') as { default: NavT };
+    const res = await import(`../../static/docs/${params!.id}.json`) as { default: DetailsT };
+
+
+    // Pass post data to the page via props
     return {
-        notFound: !res,
         props: {
-            navData,
-            res
+            navData: data.default,
+            res: res.default
         }
     }
 }
+
+
+// export const getServerSideProps:　GetServerSideProps = async ({query}) => {
+//     console.log("query: ", query);
+//     if (!query.id){
+//         return {
+//             notFound: true
+//         }
+//     }
+//     const nav = await fetch(process.env.BASE_URL + '/static/nav.json');
+//     let resJson;
+//     let pall;
+//     try{
+//         resJson = await fetch(`${process.env.BASE_URL}/static/docs/${(query.id as string).toLowerCase()}.json`);
+//         pall = await Promise.all([nav.json(), resJson.json()]) as unknown as [ NavT, DetailsT ];
+//     }catch(error){
+//         console.log("加载页面数据错误: ", error);
+//         return {
+//             notFound: true
+//         }
+//     }
+//
+//     const [ navData, res ] = pall;
+//
+//     return {
+//         notFound: !res,
+//         props: {
+//             navData,
+//             res
+//         }
+//     }
+// }
