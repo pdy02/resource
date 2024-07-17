@@ -57,31 +57,32 @@
       content: counter(section) ". ";
     }
   }
-  /*资源列表*/
-  .list_resource_item{
-    padding: var(--margin) 0;
+}
 
-    & > span{
-      font-weight: bold;
-      &:after{
-        content:"："
-      }
+/*资源列表*/
+.list_resource_item{
+  padding: var(--margin) 0;
+
+  & > span{
+    font-weight: bold;
+    &:after{
+      content:"："
     }
-    & > a{
-      transition: background-size .5s, color .2s;
-      padding-bottom: 2px;
-      background: linear-gradient(
-              to right,
-              rgb(66, 184, 131),
-              rgb(66, 184, 131)
-      ) no-repeat right bottom;
-      background-size: 0 2px;
+  }
+  & > a{
+    transition: background-size .5s, color .2s;
+    padding-bottom: 2px;
+    background: linear-gradient(
+            to right,
+            rgb(66, 184, 131),
+            rgb(66, 184, 131)
+    ) no-repeat right bottom;
+    background-size: 0 2px;
 
-      &:hover{
-        color: var(--theme-color);
-        background-size: 100% 2px;
-        background-position: left bottom;
-      }
+    &:hover{
+      color: var(--theme-color);
+      background-size: 100% 2px;
+      background-position: left bottom;
     }
   }
 }
