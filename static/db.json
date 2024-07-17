@@ -9,7 +9,7 @@
         "sys-web",
         "type-com"
       ],
-      "tags": [
+      "tag": [
         "前端",
         "框架"
       ],
@@ -148,6 +148,30 @@
       "type": ["sys-an", "sys-ios", "type-game"],
       "tag": ["番剧", "动漫"],
       "info": "一个免费看番剧的app, 视频高清无广, 但是app有广"
+    },
+    {
+      "name": "LocalSend",
+      "ico": "https://avatars.githubusercontent.com/u/120677616?s=48&v=4",
+      "url": "https://localsend.org/zh-CN",
+      "type": ["sys-an", "sys-ios", "sys-win", "sys-mac", "type-tool"],
+      "tag": ["工具", "传输"],
+      "info": "将文件分享到附近的设备。免费、开源、跨平台。"
+    },
+    {
+      "name": "WizTree",
+      "ico": "https://www.diskanalyzer.com/apple-touch-icon.png",
+      "url": "https://www.diskanalyzer.com/",
+      "type": ["sys-win", "type-tool"],
+      "tag": ["工具", "磁盘", "空间管理"],
+      "info": "FASTEST磁盘空间分析程序"
+    },
+    {
+      "name": "AudioRelay",
+      "ico": "https://audiorelay.net/assets/images/favicons/apple-touch-icon.png",
+      "url": "https://audiorelay.net/",
+      "type": ["sys-win", "sys-an" ,"type-tool"],
+      "tag": ["音频转发"],
+      "info": "将手机变成PC的麦克风或扬声器"
     }
   ]
 }

@@ -1,0 +1,15 @@
+{
+  "title": "LocalSend",
+  "ico": "https://avatars.githubusercontent.com/u/120677616?s=48&v=4",
+  "info": "跨平台的传输工具, 在同一个局域网, 设备之间相互传输文件.",
+  "adv": [
+    "免费、开源、跨平台",
+    "UI简洁"
+  ],
+  "dis": [
+    "传输速度一般"
+  ],
+  "resource_link": [
+    ["官网", "https://localsend.org/zh-CN"]
+  ]
+}

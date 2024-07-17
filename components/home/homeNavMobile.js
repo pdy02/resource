@@ -2,10 +2,6 @@ import React from 'react';
 import sty from './homeNavMobile.module.css'
 
 function HomeNavMobile(props) {
-    // const showDrop = (e) => {
-    //     console.log("e: ",e);
-    //     console.log("this: ",this);
-    // }
     function showDrop (e) {
         console.log("e: ",e.currentTarget);
         const target = e.currentTarget;

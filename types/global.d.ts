@@ -6,7 +6,7 @@ declare type MapJsonT = {
         sys:{
             title:"系统",
             values:{
-                windows:'win'
+                "win":'win'
                 "mac": "mac",
                 "an": "安卓",
                 "ios": "IOS",

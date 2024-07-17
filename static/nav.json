@@ -6,9 +6,11 @@
       {
         "list": [
           {
-            "name": "番剧"
+            "name": "番剧",
+            "href": "/classification?tag=番剧"
           },{
-            "name": "小说漫画"
+            "name": "小说漫画",
+            "href": "/classification?tag=小说/漫画"
           }
         ]
       }
@@ -19,14 +21,14 @@
     "href": "#",
     "child": [
       {
-        "group_title": "资源",
+        "group_title": "框架",
         "list": [
           {
             "name": "vue",
-            "href": "#"
+            "href": "/details/vue"
           },{
             "name": "react",
-            "href": "#"
+            "href": "/details/react"
           }
         ]
       }

@@ -27,13 +27,18 @@ function ClassifyScreening(props: PropsT) {
                     <span className='bold'>{t.title}</span>
                     <section className={sty.level_item_value} onClick={onHandleClickToggle}>
                         <span data-val="all" className={props.clas[t.name] === 'all' ? sty.active : ''}>全部</span>
-                        {t.vals.map((v: {
-                            key: string;
-                            value: string
-                        }) => <span data-val={v.key}
-                                    key={v.key}
-                                    className={props.clas[t.name] === v.key ? sty.active : ''}
-                        >{v.value}</span>)}
+                        {typeof t.vals[0] !== 'string' ?
+                            t.vals.map((v: {
+                                key: string;
+                                value: string
+                            }) => <span data-val={v.key}
+                                        key={v.key}
+                                        className={props.clas[t.name] === v.key ? sty.active : ''}
+                            >{v.value}</span>) :
+                            t.vals.map((v: string) => {
+                                return <span key={v} data-val={v} className={props.clas[t.name] === v ? sty.active : ''} >{v}</span>
+                            })
+                        }
                     </section>
                 </div>)
             }

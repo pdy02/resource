@@ -1,7 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import NavigationBar from '../../components/global/navigationBar';
 import sty from '../../styles/modules/detailes.module.css'
-import { GetStaticProps } from 'next'
+import {GetStaticProps} from 'next'
+import * as fs from "node:fs";
+import path from "node:path";
 
 interface IPorps {
     navData: NavT
@@ -64,18 +66,24 @@ export default function id(props: IPorps) {
     )
 }
 
-type Context = {
-    query: {
-        [key in string]: string
-    }
-}
-
 export async function getStaticPaths() {
-    // const res = await fetch('https://.../posts')
-    // const posts = await res.json()
-    const posts = [
-        "vue","开源阅读","omoFun","异次元","源仓库","网飞猫","Tvbox"
-    ]
+    const DOCS_PATH = path.resolve(process.cwd(), `./static/docs`);
+    const files = fs.readdirSync(DOCS_PATH);
+    // __dirname D:\Development\Store\resource_tools\ssg\nextjs-blog\.next\server\pages\details
+    // cwd: D:\Development\Store\resource_tools\ssg\nextjs-blog
+    // const resList: string[] = [];
+    const resList = files.map(file => {
+        // console.log(path.extname(path.join(DOCS_PATH, file)));
+        if(path.extname(path.join(DOCS_PATH, file)) === '.json'){
+            return file.slice(0,-5)
+        }
+    })
+    console.log(resList)
+    console.log("cwd:　", files)
+    const posts = resList;
+    //     [
+    //     "vue","开源阅读","omoFun","异次元","源仓库","网飞猫","Tvbox","LocalSend"
+    // ]
 
     const paths = posts.map((post) => ({
         params: { id: post },
@@ -88,8 +96,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     const data = await import('../../static/nav.json') as { default: NavT };
     const res = await import(`../../static/docs/${params!.id}.json`) as { default: DetailsT };
 
-
-    // Pass post data to the page via props
     return {
         props: {
             navData: data.default,

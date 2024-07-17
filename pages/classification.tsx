@@ -29,16 +29,27 @@ export default function Classification(props: Props) {
     // TODO 根据获取的map映射出筛选项
     const classifyMap = useMemo(() => {
         const map = props.map.type_map; // 遍历对象
-        const list = [];
+        type Val = {
+            "key": string
+            "value": string
+        }
+        type Vals = Val[]
+        /*
+        * name: sys
+        * title: 系统
+        * vals: {
+        *   key: "windows"
+        *   value: "win"
+        * }[]
+        * */
+        const list: {
+            name: string
+            title: string
+            vals: (Val | string)[]
+        }[] = [];
         for (let mapKey in map) {
-            // mapKey = mapKey as MapKeyT
             // @ts-ignore
             const val = map[mapKey];
-            type Val = {
-                "key": string
-                "value": string
-            }
-            type Vals = Val[]
             const obj: {
                 name: string
                 title: string
@@ -56,10 +67,24 @@ export default function Classification(props: Props) {
             }
             list.push(obj);
         }
+        // list.push({
+        //     name:"tag",
+        //     title:"标签",
+        //     vals: [] as string[],
+        // })
+        // const tagObj = list.filter(t => t.name === 'tag')[0]
+        // for (let itemVal of props.db.list) {
+        //     if(itemVal.tag){
+        //         tagObj.vals = [...new Set([...tagObj.vals, ...itemVal.tag])]
+        //     }
+        // }
         return list
     }, [props.map])
 
 
+    /**
+     * 当前激活项clas初始化
+     */
     const clasInit = () => {
         // 遍历map
         const temp = {};
@@ -130,24 +155,10 @@ export default function Classification(props: Props) {
             setSearchRes([]) // 清空搜索结果
         }
     }
-    // input输入事件
-    function onInputChange(e: React.ChangeEvent<HTMLInputElement>){
-        const target = e.target as HTMLInputElement
-        setValue(target.value)
-    }
-    // 键盘回车
-    function onHandleEnter(e:　React.KeyboardEvent){
-        e.key === 'Enter' && (toSearch(value))
-    }
-    // 点击按钮搜索
-    function onHandleClickSearch(e:React.MouseEvent) {
-        toSearch(value)
-    }
+
     // 底下两个按钮
     function btnsClickHndle(e: React.MouseEvent, url: string){
         e.preventDefault();
-        // to go url
-        // window.location.href = url;
         let aEl = document.createElement('a')
         aEl.target = '_blank'
         aEl.href = url;
@@ -158,12 +169,13 @@ export default function Classification(props: Props) {
     const [w, setW] = useState('98px')
     function getWidth(){
         const a = document.querySelector('a.resource_box') as HTMLAnchorElement;
-        // console.log("width: ", a.offsetWidth);
+        if(!a){
+            return
+        }
         const infoEl = a.querySelector('.resource_info') as HTMLDivElement;;
-        // console.log("width: ", infoEl.clientWidth);
-        // console.log("width: ", infoEl.getBoundingClientRect().width -8);
         setW(infoEl.getBoundingClientRect().width -8 + 'px')
     }
+    // 组件挂载之后执行
     useEffect(()=>{
         window.addEventListener('resize', temp) // 监听
         // 设置节流
@@ -199,18 +211,26 @@ export default function Classification(props: Props) {
 
         /**筛选函数, 判断通过则符合筛选结果 */
         function filter(item: DbT["list"][number]) {
-            let tempBool = true;
-            item.type.forEach((itemType) => {
-                // sys-web type-com 格式
-                const k = itemType.split('-')[0]
-                const v = itemType.split('-')[1];
-                // 当前选项(clas)不等于该项目类型, 并且不是选择全部('all')
+            // let tempBool = false;
+            const clasArray: string[] = [];
+            const allList = []
+            for (let clasKey in clas) {
                 // @ts-ignore
-                if ((clas[k] !== v) && (clas[k] !== 'all')) {
-                    tempBool = false;
-                };
-            })
-            return tempBool;
+                const clasVal = clas[clasKey];
+                allList.push(`${clasKey}-all`);
+                clasArray.push(`${clasKey}-${clasVal}`)
+            }
+            const newTypeList = [...item.type, ...allList];
+
+            let through = 0;
+            for (let str of clasArray) {
+                newTypeList.includes(str) && through++;
+            }
+            if(through === clasArray.length){
+                return true;
+            }else{
+                return false;
+            }
         }
 
         return resList
@@ -226,18 +246,18 @@ export default function Classification(props: Props) {
                 <section>
                     {
                         res.map(t => {
-                            return <a key={t.name} title={t.info} href={`/details/${t.name}`}
+                            return <a key={t.name} title={t.info + '\n' +'标签：'+ t?.tag?.toString() } href={`/details/${t.name}`}
                                       target="_blank"
                                       data-source={t.url}
                                       className={sty.item + ' transition resource_box'}>
                                 <div className={sty.cover}>
-                                    <img title={t.info} onError={handleImgLoadError} src={t.ico} alt="logo"/>
+                                    <img onError={handleImgLoadError} src={t.ico} alt="logo"/>
                                 </div>
                                 <div className={sty.info + ' resource_info'}>
                                     <span className={sty.item_title}>{t.name}</span>
                                     <p style={{'maxWidth': w}}>{t.info}</p>
                                 </div>
-                                <div className={sty.btns + ''}>
+                                <div className={sty.btns}>
                                     <span onClick={(event) => btnsClickHndle(event, t.url)}>官网</span>
                                     <span onClick={(event) => btnsClickHndle(event, `/details/${t.name}`)}>详情</span>
                                 </div>

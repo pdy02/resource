@@ -14,9 +14,8 @@
 
     & > section {
         width: 100%;
-        margin-top: var(--margin);
+        margin: var(--margin) 0;
         display: grid;
-        grid-template-columns: repeat(auto-fill, 150px);
         grid-template-rows: repeat(auto-fill, 85px);
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: var(--margin);

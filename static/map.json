@@ -3,7 +3,7 @@
     "sys": {
       "title": "系统",
       "values": {
-        "windows": "win",
+        "win": "win",
         "mac": "mac",
         "an": "安卓",
         "ios": "IOS",
@@ -15,7 +15,8 @@
       "values": {
         "com": "编程",
         "game": "娱乐",
-        "learn": "学习"
+        "learn": "学习",
+        "tool": "工具"
       }
     }
   }
