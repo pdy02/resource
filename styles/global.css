@@ -14,8 +14,8 @@ html{
   /*尺寸*/
   --margin: 16px; /*间距*/
   --proportion:75%; /*内容区宽度比例*/
-  @media (width < 500px){
-    --proportion: 90%;
+  @media (width < 1000px){
+    --proportion: 95%;
   }
   --mobile-width:500px; /*移动端宽度*/
 
@@ -53,6 +53,11 @@ body {
     Droid Sans,
     Helvetica Neue,
     sans-serif;
+}
+
+/*禁止滚动*/
+body.no_scroll{
+  overflow: hidden;
 }
 
 a {

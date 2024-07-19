@@ -1,12 +1,12 @@
 .root {
     min-height: 100vh;
     background-color: var(--global-bg-color-light);
-    /*background-color: green;*/
+    background-color: white;
 }
 
 .classify {
     width: var(--proportion);
-    @media (width < 1000px){
+    @media (width < 1000px) {
         --proportion: 95%;
     }
     margin: auto;
@@ -16,69 +16,40 @@
         width: 100%;
         margin: var(--margin) 0;
         display: grid;
-        grid-template-rows: repeat(auto-fill, 85px);
+        /*grid-template-rows: repeat(auto-fill, 85px);*/
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: var(--margin);
+        gap: calc(var(--margin) * 2);
     }
 }
 
 /*TODO 一项*/
 .item {
     --asp: 200 / 70;
+    --border-radius: 5px;
     aspect-ratio: var(--asp);
-    /*padding: calc(70 / 200 * 16px);*/
-    /*width: 200px;*/
-    /*height: 87px;*/
     background-color: var(--bg-color);
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    /*transition: transform .2s;*/
-    /*margin-bottom: var(--margin);*/
-    /*display: flex;*/
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 3fr 1fr;
-    /*grid-template:*/
-    /*        "a b b" 50px*/
-    /*        "c c c" 1fr;*/
+    box-shadow: 0 0 10px #BDC3C7;
 
-    /*btns*/
-    .btns{
-        grid-column: 1 / -1; /* 占满底下一行 */
-        text-align: center;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        & > span{
-            /*display: inline-block;*/
-            /*margin-top: 8px;*/
-            /*flex: 1;*/
-            /*width: 50%;*/
-            height: 100%;
-        }
-        & > span:nth-child(1){
-            background-color: #0078d4;
-        }
-        & > span:nth-child(2){
-            background-color: var(--theme-color);
-        }
-    }
-    .cover{
+
+    .cover {
         aspect-ratio: 1;
         width: 100%;
         height: 100%;
         padding: 5px;
-        & > img{
+
+        & > img {
             aspect-ratio: 1;
             width: 100%;
             border-radius: 50%;
         }
     }
-    & img {
-    }
 
     .info {
-        /*margin-left: 10px;*/
-        /*box-sizing: content-box;*/
         padding-left: 8px;
         flex: 1;
 
@@ -88,12 +59,6 @@
         }
 
         & > p {
-            /*@media (width < 500px){*/
-            /*    display: none;*/
-            /*}*/
-            --content-height: calc(var(--asp) + px);
-            --content-width: calc(200px - var(--margin) * 2);
-            --w: calc(var(--content-width) - var(--content-height));
             max-width: 100px;
             color: #888888;
             font-size: var(--font-size-small);
@@ -106,6 +71,7 @@
 
     &:hover {
         transform: translateY(-5px);
+        box-shadow: 0 5px 15px #BDC3C7;
 
         .item_title {
             color: var(--theme-color);
@@ -113,13 +79,58 @@
     }
 }
 
+/*btns*/
+.btns {
+    grid-column: 1 / -1; /* 占满底下一行 */
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    padding-bottom: 5px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 0.5px;
+        background-color: #BDC3C7;
+    }
+
+    & > span {
+        height: 100%;
+    }
+
+    & > span:nth-child(1) {
+        border-radius: 0 0 0 var(--border-radius);
+        /*background-color: #0078d4;*/
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 0.5px;
+            transform: translateX(50%);
+            background-color: #BDC3C7;
+        }
+    }
+
+    & > span:nth-child(2) {
+        border-radius: 0 0 var(--border-radius) 0;
+        /*background-color: var(--theme-color);*/
+    }
+}
 
 /*TODO 搜索框*/
 .search_box {
-    --height:35px;
+    --height: 35px;
     width: 250px;
     height: var(--height);
     position: relative;
+
     & > input {
         position: absolute;
         width: 100%;
@@ -127,10 +138,11 @@
         background-color: var(--global-bg-color-light);
         border-radius: calc(var(--height) / 2);
         outline: none;
-        padding: 0 calc(var(--height)*2) 0 10px;
+        padding: 0 calc(var(--height) * 2) 0 10px;
         font-size: calc(calc(var(--height) / 2.5));
     }
-    & > button{
+
+    & > button {
         aspect-ratio: 2;
         height: 100%;
         border-radius: calc(var(--height) / 2);

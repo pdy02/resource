@@ -1,0 +1,156 @@
+/*布局样式*/
+.popup{
+    display: none;
+    position: fixed;
+    inset: 0;
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*transform: translate(-50%, -50%);*/
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    background-color: rgba(100, 100, 100, 0.2);
+    transition: all .5s;
+    --s: 300ms;
+}
+
+@keyframes hideAnimation {
+    0%{
+        display: block;
+    }
+    100%{
+        display: none;
+    }
+}
+@keyframes showAnimation {
+    0%{
+        display: block;
+    }
+}
+@keyframes popupHideAnimation {
+    0%{
+        transform: scale(1) translate(-50%, -50%);
+    }
+    95%{
+        transform: scale(0) translate(-50%, -50%);
+    }
+    100%{
+        transform: scale(0) translate(-50%, -50%);
+        display: none;
+    }
+}
+
+@keyframes popupShowAnimation {
+    0%{
+        transform: scale(0) translate(-50%, -50%);
+    }
+    100%{
+        transform: scale(1) translate(-50%, -50%);
+    }
+}
+
+/*显示类show*/
+.show{
+    display: block;
+    .container{
+        animation: popupShowAnimation var(--s) both;
+    }
+}
+
+/*隐藏类hide*/
+.hide{
+    animation: hideAnimation calc(var(--s) + 33ms) both;
+    .container{
+        animation: popupHideAnimation var(--s) both;
+    }
+}
+
+/*内容容器*/
+.container{
+    background-color: #fff;
+    box-shadow: 0 0 10px #BDC3C7;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: left top;
+    min-width: 300px;
+    min-height: 250px;
+    border-radius: 10px;
+    padding: var(--margin);
+    padding-top: 28px;
+}
+
+/*关闭按钮*/
+.shutDownBtn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px;
+    width: fit-content;
+    transition: color .2s;
+    &>span{
+        font-size: 20px;
+    }
+    &:hover{
+        color: #BDC3C7;
+    }
+}
+
+/*头部*/
+.head{
+    vertical-align: middle;
+    & > img{
+        object-fit: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        vertical-align: inherit;
+        margin-right: 8px;
+    }
+    & > span{
+        font-weight: bold;
+        vertical-align: inherit;
+    }
+}
+
+/*标签盒子*/
+.tagBox{
+    --w:3em;
+    padding-left: var(--w);
+    position: relative;
+    /*text-wrap: nowrap;*/
+    word-break: break-word;
+    user-select: none;
+    margin: var(--margin) 0;
+    & > span:first-child{
+        width: var(--w);
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        &~span{
+            width: fit-content;
+            background-color: var(--theme-color);
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: var(--font-size-small);
+            margin-right: 8px;
+        }
+    }
+}
+
+/*链接地址*/
+.links{
+    margin: var(--margin) 0;
+    & > a{
+        color: var(--theme-color);
+        text-decoration: underline;
+        margin-right: var(--margin);
+    }
+}
+
+/*介绍-盒子*/
+.info{
+    letter-spacing: 2px;
+}

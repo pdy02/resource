@@ -172,6 +172,46 @@
       "type": ["sys-win", "sys-an" ,"type-tool"],
       "tag": ["音频转发"],
       "info": "将手机变成PC的麦克风或扬声器"
+    },
+    {
+      "name": "NameSilo",
+      "ico": "https://www.namesilo.com/favicon.ico",
+      "url": "https://www.namesilo.com/",
+      "type": ["sys-web", "type-tool"],
+      "tag": ["域名管理","域名购买"],
+      "info": "国外的一个域名购买平台, 域名挺便宜的"
+    },
+    {
+      "name": "Kimi",
+      "ico": "https://statics.moonshot.cn/kimi-chat/favicon.ico",
+      "url": "https://kimi.moonshot.cn/",
+      "type": ["sys-web", "sys-an", "type-ai", "type-learn", "type-tool"],
+      "tag": ["ai", "免费"],
+      "info": "一个免费的ai平台"
+    },
+    {
+      "name": "islide",
+      "ico": "https://www.islide.cc/favicon.ico",
+      "url": "https://www.islide.cc/",
+      "type": ["sys-web", "sys-win","sys-mac", "type-ai", "type-tool"],
+      "tag": ["ai", "ppt", "免费"],
+      "info": "一个ai生成ppt的网站"
+    },
+    {
+      "name": "秘塔Ai搜索",
+      "ico": "https://metaso.cn/favicon.ico",
+      "url": "https://metaso.cn/",
+      "type": ["sys-web", "type-tool", "type-ai"],
+      "tag": ["ai", "搜索", "免费"],
+      "info": "没有广告，直达结果的一款ai搜索工具"
+    },
+    {
+      "name": "ghproxy",
+      "ico": "https://mirror.ghproxy.com/favicon.ico",
+      "url": "https://mirror.ghproxy.com/",
+      "type": ["sys-web", "type-tool"],
+      "tag": ["github下载代理","代理"],
+      "info": "一个github下载资源代理的平台, 可以更快下载"
     }
   ]
 }

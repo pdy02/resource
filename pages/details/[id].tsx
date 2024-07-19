@@ -1,16 +1,29 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import NavigationBar from '../../components/global/navigationBar';
 import sty from '../../styles/modules/detailes.module.css'
 import {GetStaticProps} from 'next'
 import * as fs from "node:fs";
 import path from "node:path";
 
-interface IPorps {
+interface Porps {
     navData: NavT
     res: DetailsT
 }
-export default function id(props: IPorps) {
-
+export default function id(props: Porps) {
+    useEffect(() => {
+        const __MAX__ = 2000; // ms
+        // 获取所有链接元素
+        const list = document.querySelectorAll(`.${sty.list_resource_item} > a`);
+        const ctn = document.createElement('span');
+        ctn.style.visibility = 'hidden'; // 不可见
+        document.body.appendChild(ctn);
+        for (let listElement of list) {
+            ctn.innerText = listElement.innerHTML;
+            const s = ctn.offsetWidth > __MAX__ ? __MAX__ : ctn.offsetWidth;
+            (listElement as HTMLSpanElement).style.setProperty('--ms', s +'ms');
+        }
+        ctn.remove(); // 移除dom
+    }, []);
     return (
         <>
             <NavigationBar navData={props.navData}></NavigationBar>
@@ -71,7 +84,6 @@ export async function getStaticPaths() {
     const files = fs.readdirSync(DOCS_PATH);
     // __dirname D:\Development\Store\resource_tools\ssg\nextjs-blog\.next\server\pages\details
     // cwd: D:\Development\Store\resource_tools\ssg\nextjs-blog
-    // const resList: string[] = [];
     const resList = files.map(file => {
         // console.log(path.extname(path.join(DOCS_PATH, file)));
         if(path.extname(path.join(DOCS_PATH, file)) === '.json'){

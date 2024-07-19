@@ -8,6 +8,7 @@ import NavigationBar from '../components/global/navigationBar';
 import {useRouter} from "next/router";
 import {search} from "../utils";
 import classifySearchBox from '../components/classification/classifySearchBox';
+import Popup from '../components/global/popup'
 
 interface Props {
     navData: NavT
@@ -206,11 +207,11 @@ export default function Classification(props: Props) {
         let list = db.list;
         const resList = list.filter(item => {
             // 筛选符合条件的项目
-            return filter(item)
+            return _filter(item)
         })
 
         /**筛选函数, 判断通过则符合筛选结果 */
-        function filter(item: DbT["list"][number]) {
+        function _filter(item: DbT["list"][number]) {
             // let tempBool = false;
             const clasArray: string[] = [];
             const allList = []
@@ -235,6 +236,20 @@ export default function Classification(props: Props) {
 
         return resList
     }, [db, clas, isSearching])
+
+    // TODO: 点击item,弹出框
+    const [ show, setShow ] = useState(false); // 是否显示popup
+    const [popupData, setPopupData] = useState<DbT["list"][number]>();
+    /**
+     * 点击a标签事件
+     */
+    const clickHandle = (e: React.MouseEvent, name: string) => {
+        e.preventDefault(); // 先阻止默认跳转事件
+        const data = props.db.list.filter(item => item.name === name)[0]
+        setPopupData(data); // 获取点击项的数据
+        setShow(true);
+    }
+
     return (
         <div className={sty.root}>
             <NavigationBar navData={props.navData}></NavigationBar>
@@ -246,9 +261,12 @@ export default function Classification(props: Props) {
                 <section>
                     {
                         res.map(t => {
-                            return <a key={t.name} title={t.info + '\n' +'标签：'+ t?.tag?.toString() } href={`/details/${t.name}`}
+                            return <a key={t.name}
+                                      title={t.info + '\n' +'标签：'+ t?.tag?.toString() }
+                                      href={`/details/${t.name}`}
                                       target="_blank"
                                       data-source={t.url}
+                                      onClick={(e) => clickHandle(e, t.name)}
                                       className={sty.item + ' transition resource_box'}>
                                 <div className={sty.cover}>
                                     <img onError={handleImgLoadError} src={t.ico} alt="logo"/>
@@ -257,16 +275,17 @@ export default function Classification(props: Props) {
                                     <span className={sty.item_title}>{t.name}</span>
                                     <p style={{'maxWidth': w}}>{t.info}</p>
                                 </div>
-                                <div className={sty.btns}>
-                                    <span onClick={(event) => btnsClickHndle(event, t.url)}>官网</span>
-                                    <span onClick={(event) => btnsClickHndle(event, `/details/${t.name}`)}>详情</span>
-                                </div>
+                                {/*<div className={sty.btns}>*/}
+                                {/*    <span onClick={(event) => btnsClickHndle(event, t.url)}>官网</span>*/}
+                                {/*    <span onClick={(event) => btnsClickHndle(event, `/details/${t.name}`)}>详情</span>*/}
+                                {/*</div>*/}
                             </a>
                         })
                     }
 
                 </section>
             </div>
+            <Popup show={show} data={popupData} onClose={() => {setShow(false)}}></Popup>
         </div>
     );
 }
