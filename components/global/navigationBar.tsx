@@ -6,6 +6,7 @@ import {switchBodyScroll} from "../../utils";
 
 interface IProps {
     navData: NavT
+    className: string
 }
 // 导航栏组件
 function NavigationBar(props: IProps) {
@@ -27,7 +28,7 @@ function NavigationBar(props: IProps) {
 
     return (
         <>
-        <header className={sty.top_layer}>
+        <header className={`${sty.top_layer} ${props.className && props.className}`}>
             {/*搜索栏*/}
             <div className={sty.head}>
                 <div className={`${sty.logo} logo`}>

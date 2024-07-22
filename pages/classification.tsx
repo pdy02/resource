@@ -232,6 +232,11 @@ export default function Classification(props: Props) {
         return resList
     }, [db, clas, isSearching])
 
+    // db数据列表渲染的item,res中是否有该项
+    const hasRes = (name: string) => {
+        return res.find(t => t.name === name);
+    }
+
     // TODO: 弹出框功能
     const [ show, setShow ] = useState(false); // 是否显示popup
     const [popupData, setPopupData] = useState<PopupData>();
@@ -252,7 +257,7 @@ export default function Classification(props: Props) {
 
     return (
         <div className={sty.root}>
-            <NavigationBar navData={props.navData}></NavigationBar>
+            <NavigationBar className={sty.nav_bar} navData={props.navData}></NavigationBar>
             <div className={sty.classify}>
                 <ClassifyScreening onChange={onChange} clas={clas} classifyMap={classifyMap}></ClassifyScreening>
                 {/*搜索框*/}
@@ -260,14 +265,14 @@ export default function Classification(props: Props) {
                 {/*内容栏*/}
                 <section>
                     {
-                        res.map(t => {
+                        db.list.map(t => {
                             return <a key={t.name}
                                       title={t.info + '\n' +'标签：'+ t?.tag?.toString() }
                                       href={`/details/${t.name}`}
                                       target="_blank"
                                       data-source={t.url}
                                       onClick={(e) => clickHandle(e, t.name)}
-                                      className={sty.item + ' transition resource_box'}>
+                                      className={`${sty.item} ${hasRes(t.name) || sty.item_hide} transition resource_box`}>
                                 <div className={sty.cover}>
                                     <img onError={handleImgLoadError} src={t.ico} alt="logo"/>
                                 </div>
@@ -275,10 +280,6 @@ export default function Classification(props: Props) {
                                     <span className={sty.item_title}>{t.name}</span>
                                     <p style={{'maxWidth': w}}>{t.info}</p>
                                 </div>
-                                {/*<div className={sty.btns}>*/}
-                                {/*    <span onClick={(event) => btnsClickHndle(event, t.url)}>官网</span>*/}
-                                {/*    <span onClick={(event) => btnsClickHndle(event, `/details/${t.name}`)}>详情</span>*/}
-                                {/*</div>*/}
                             </a>
                         })
                     }

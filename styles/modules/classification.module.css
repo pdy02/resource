@@ -1,16 +1,34 @@
+/*根元素*/
 .root {
     min-height: 100vh;
     background-color: var(--global-bg-color-light);
     background-color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/*head导航条*/
+.nav_bar{
+
 }
 
 .classify {
     width: var(--proportion);
     @media (width < 1000px) {
         --proportion: 95%;
+        padding-right: initial;
     }
     margin: auto;
-    padding-top: calc(60px + var(--margin));
+    /*padding-top: calc(60px + var(--margin));*/
+    flex: 1;
+    overflow-y: auto;
+    padding-right: var(--margin);
+    scrollbar-width: none; /* 兼容firefox */
+    -ms-overflow-style: none; /* 兼容IE */
+    &::-webkit-scrollbar{
+        display: none; /* 兼容chrome Safari */
+    }
 
     & > section {
         width: 100%;
@@ -77,6 +95,11 @@
             color: var(--theme-color);
         }
     }
+}
+
+/*隐藏项*/
+.item_hide{
+    display: none;
 }
 
 /*btns*/

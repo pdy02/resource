@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import sty from './cssModules/popup.module.css'
 import Link from "next/link";
 import { PopupData } from "../../types";
+import imgError from '../../public/images/img-failure.svg'
 
 interface Props {
     show: boolean
@@ -25,9 +26,13 @@ function popup({show,data, onClose}: Props) {
 
     const clickPopupHandle = (e: React.MouseEvent) => {
         if(e.target === e.currentTarget){
-            console.log("真正的元素")
             closeHandle()
         }
+    }
+
+    const onImgErrorHandle = (e: React.SyntheticEvent<HTMLImageElement>) => {
+        const img = e.target as HTMLImageElement;
+        img.src = imgError.src
     }
     return (
         <>
@@ -42,7 +47,7 @@ function popup({show,data, onClose}: Props) {
                             <span className={`iconfont icon-guanbi`}></span>
                         </div>
                         <header className={`${sty.head}`}>
-                            <img src={data.ico} alt="logo"/>
+                            <img onError={onImgErrorHandle} src={data.ico} alt="logo"/>
                             <span>{data.name}</span>
                         </header>
                         <main>
