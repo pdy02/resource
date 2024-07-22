@@ -6,7 +6,7 @@ import {switchBodyScroll} from "../../utils";
 
 interface IProps {
     navData: NavT
-    className: string
+    className?: string
 }
 // 导航栏组件
 function NavigationBar(props: IProps) {
