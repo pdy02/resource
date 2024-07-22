@@ -2,6 +2,7 @@ import React, {useMemo, useState} from 'react';
 import HomeNavMobile from "../home/homeNavMobile";
 import sty from './cssModules/navigationBar.module.css'
 import Link from 'next/link'
+import {switchBodyScroll} from "../../utils";
 
 interface IProps {
     navData: NavT
@@ -18,7 +19,9 @@ function NavigationBar(props: IProps) {
 
     function handleClickShow() {
         setIsShow((prevState) => {
-            return !prevState
+            const cur = !prevState;
+            switchBodyScroll(cur);// 禁止/允许滚动
+            return cur;
         })
     }
 

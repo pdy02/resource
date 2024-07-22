@@ -2,14 +2,13 @@ import React, {useEffect} from 'react';
 import NavigationBar from '../../components/global/navigationBar';
 import sty from '../../styles/modules/detailes.module.css'
 import {GetStaticProps} from 'next'
-import * as fs from "node:fs";
-import path from "node:path";
+import {getDetailsPaths} from "../../utils/node";
 
-interface Porps {
+interface Props {
     navData: NavT
     res: DetailsT
 }
-export default function id(props: Porps) {
+export default function id(props: Props) {
     useEffect(() => {
         const __MAX__ = 2000; // ms
         // 获取所有链接元素
@@ -80,24 +79,10 @@ export default function id(props: Porps) {
 }
 
 export async function getStaticPaths() {
-    const DOCS_PATH = path.resolve(process.cwd(), `./static/docs`);
-    const files = fs.readdirSync(DOCS_PATH);
-    // __dirname D:\Development\Store\resource_tools\ssg\nextjs-blog\.next\server\pages\details
-    // cwd: D:\Development\Store\resource_tools\ssg\nextjs-blog
-    const resList = files.map(file => {
-        // console.log(path.extname(path.join(DOCS_PATH, file)));
-        if(path.extname(path.join(DOCS_PATH, file)) === '.json'){
-            return file.slice(0,-5)
-        }
-    })
-    console.log(resList)
-    console.log("cwd:　", files)
-    const posts = resList;
-    //     [
+    // [
     //     "vue","开源阅读","omoFun","异次元","源仓库","网飞猫","Tvbox","LocalSend"
     // ]
-
-    const paths = posts.map((post) => ({
+    const paths = getDetailsPaths().map((post) => ({
         params: { id: post },
     }))
 
@@ -115,35 +100,3 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         }
     }
 }
-
-
-// export const getServerSideProps:　GetServerSideProps = async ({query}) => {
-//     console.log("query: ", query);
-//     if (!query.id){
-//         return {
-//             notFound: true
-//         }
-//     }
-//     const nav = await fetch(process.env.BASE_URL + '/static/nav.json');
-//     let resJson;
-//     let pall;
-//     try{
-//         resJson = await fetch(`${process.env.BASE_URL}/static/docs/${(query.id as string).toLowerCase()}.json`);
-//         pall = await Promise.all([nav.json(), resJson.json()]) as unknown as [ NavT, DetailsT ];
-//     }catch(error){
-//         console.log("加载页面数据错误: ", error);
-//         return {
-//             notFound: true
-//         }
-//     }
-//
-//     const [ navData, res ] = pall;
-//
-//     return {
-//         notFound: !res,
-//         props: {
-//             navData,
-//             res
-//         }
-//     }
-// }

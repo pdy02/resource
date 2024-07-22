@@ -212,6 +212,46 @@
       "type": ["sys-web", "type-tool"],
       "tag": ["github下载代理","代理"],
       "info": "一个github下载资源代理的平台, 可以更快下载"
+    },
+    {
+      "name": "caniuse",
+      "ico": "https://caniuse.com/img/favicon-128.png",
+      "url": "https://caniuse.com/",
+      "type": ["sys-web", "type-com"],
+      "tag": ["CSS", "属性兼容"],
+      "info": "一个查看CSS属性在各大浏览器的兼容情况的网站"
+    },
+    {
+      "name": "listary",
+      "ico": "https://assets-global.website-files.com/643e09c9f19df8579c420d9f/64ec15d75eb38b96eb59ffe3_Listary-favicon.png",
+      "url": "https://www.listary.com/",
+      "type": ["sys-win", "type-tool"],
+      "tag": ["快速本地搜索","效率工具"],
+      "info": "Listary让你快速找到你的文件和启动应用程序"
+    },
+    {
+      "name": "uTools",
+      "ico": "https://res.u-tools.cn/website5/assets/favicon.png",
+      "url": "https://u.tools/",
+      "type": ["sys-win","type-tool"],
+      "tag": ["效率工具", "快速搜索", "插件集成"],
+      "info": "呼之即来，即用即走，打造你的个人效率助理"
+    },
+    {
+      "name": "everything",
+      "ico": "https://www.voidtools.com/searchicon.png",
+      "url": "https://www.voidtools.com/zh-cn/",
+      "type": ["sys-win","type-tool"],
+      "tag": ["效率工具", "快速搜索"],
+      "info": "基于名称快速定位文件和文件夹。"
+    },
+    {
+      "name": "NDM",
+      "ico": "https://www.neatdownloadmanager.com/templates/neat/images/icon.png",
+      "url": "https://www.neatdownloadmanager.com/index.php/en/",
+      "type": ["sys-win","sys-mac", "type-tool"],
+      "tag": ["下载", "多线程下载"],
+      "info": "是一个免费的Internet下载管理器"
     }
   ]
 }

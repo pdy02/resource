@@ -1,7 +1,7 @@
 /**
  * 分类页面
  */
-import React, {createElement, useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import ClassifyScreening from "../components/classification/classifyScreening";
 import sty from '../styles/modules/classification.module.css'
 import NavigationBar from '../components/global/navigationBar';
@@ -9,11 +9,15 @@ import {useRouter} from "next/router";
 import {search} from "../utils";
 import classifySearchBox from '../components/classification/classifySearchBox';
 import Popup from '../components/global/popup'
+import imgError from '../public/images/img-failure.svg';
+import { getDetailsPaths } from "../utils/node";
+import {PopupData} from "../types";
 
 interface Props {
     navData: NavT
     db: DbT
     map: MapJsonT
+    paths: string[]
 }
 
 export type ClasType = {
@@ -27,7 +31,7 @@ export default function Classification(props: Props) {
         setClas(clasInit()) // 重新设置clas
     }, [router.query]);
 
-    // TODO 根据获取的map映射出筛选项
+    // TODO: 根据获取的map映射出筛选项
     const classifyMap = useMemo(() => {
         const map = props.map.type_map; // 遍历对象
         type Val = {
@@ -126,21 +130,20 @@ export default function Classification(props: Props) {
         return `${__LINK__}${url}`
     }
 
-    /**
-     * 网站logo加载错误*/
+    // TODO: 网络图片加载失败, 替换成本地"错误"图片 -功能
     const handleImgLoadError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-        const target = e.target;
-        console.log("img load error: ", target)
+        const target = e.target as HTMLImageElement;
+        target.src = imgError.src;
     }
 
     // TODO 搜索功能
-
-    // 正在搜索ing
+    // 正在搜索中 -stata
     const [isSearching, setSearching] = useState({value: false});
-    // 搜索结果
+    // 搜索结果 -stata
     const [searchRes, setSearchRes] = useState<DbT["list"]>([]);
-    // 搜索框内容
+    // 搜索框内容 -stata
     const [value, setValue] = useState('')
+    // 去搜索 -函数
     function toSearch(key: string){
         if(key.trim()){ // 有值, 去搜索
             setSearching({
@@ -157,16 +160,8 @@ export default function Classification(props: Props) {
         }
     }
 
-    // 底下两个按钮
-    function btnsClickHndle(e: React.MouseEvent, url: string){
-        e.preventDefault();
-        let aEl = document.createElement('a')
-        aEl.target = '_blank'
-        aEl.href = url;
-        aEl.click(); // 触发元素跳转
-    }
 
-    // 动态计算宽度
+    // TODO: 动态计算宽度, 设置p元素宽度 -功能
     const [w, setW] = useState('98px')
     function getWidth(){
         const a = document.querySelector('a.resource_box') as HTMLAnchorElement;
@@ -237,16 +232,21 @@ export default function Classification(props: Props) {
         return resList
     }, [db, clas, isSearching])
 
-    // TODO: 点击item,弹出框
+    // TODO: 弹出框功能
     const [ show, setShow ] = useState(false); // 是否显示popup
-    const [popupData, setPopupData] = useState<DbT["list"][number]>();
+    const [popupData, setPopupData] = useState<PopupData>();
     /**
      * 点击a标签事件
      */
     const clickHandle = (e: React.MouseEvent, name: string) => {
         e.preventDefault(); // 先阻止默认跳转事件
         const data = props.db.list.filter(item => item.name === name)[0]
-        setPopupData(data); // 获取点击项的数据
+        var isDetailsPath = false;
+        if (props.paths.map(t => t.toLowerCase()).includes(data.name.toLowerCase())) {
+            // 没有详情地址
+            isDetailsPath = true
+        }
+        setPopupData({...data, isDetailsPath}); // 获取点击项的数据
         setShow(true);
     }
 
@@ -292,6 +292,7 @@ export default function Classification(props: Props) {
 
 // 静态渲染
 export async function getStaticProps() {
+    const paths = getDetailsPaths();
     const data = await import('../static/nav.json') as { default: NavT };
     // 筛选类型-map映射文件
     const classifyMap = await import('../static/map.json') as { default: MapJsonT };
@@ -301,6 +302,7 @@ export async function getStaticProps() {
             navData: data.default,
             map: classifyMap.default,
             db,
+            paths,
         }
     }
 }

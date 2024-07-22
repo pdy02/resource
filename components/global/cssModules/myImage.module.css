@@ -1,0 +1,15 @@
+.container{
+    /*默认宽高*/
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+.container > img:before{
+    content:"";
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: url("../../../public/images/img-loading.svg") no-repeat;
+    background-size: 100% 100%;
+}

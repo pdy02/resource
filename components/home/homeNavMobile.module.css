@@ -8,7 +8,7 @@
         height: 100vh; /*固定高度, 多余则滚动*/
         padding-top: 60px; /*导航栏占位*/
         overflow: auto;
-        position: absolute;
+        position: fixed;
         inset: 0;
         z-index: 99;
         background-color: var(--bg-color);

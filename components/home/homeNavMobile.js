@@ -2,12 +2,12 @@ import React from 'react';
 import sty from './homeNavMobile.module.css'
 
 function HomeNavMobile(props) {
-    function showDrop (e) {
-        console.log("e: ",e.currentTarget);
+    function showDrop(e) {
         const target = e.currentTarget;
         const __KEY__ = 'show';
-        target.dataset[__KEY__] = target.dataset[__KEY__] === 'false'? 'true': 'false';
+        target.dataset[__KEY__] = target.dataset[__KEY__] === 'false' ? 'true' : 'false';
     }
+
     return (
         <div className={sty.container}>
             <nav className={sty.menu}>

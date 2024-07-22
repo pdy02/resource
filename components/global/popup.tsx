@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import sty from './cssModules/popup.module.css'
 import Link from "next/link";
-
+import { PopupData } from "../../types";
 
 interface Props {
     show: boolean
-    data: DbT["list"][number] | undefined
+    data: PopupData | undefined
     onClose: () => void
 }
 function popup({show,data, onClose}: Props) {
@@ -18,14 +18,20 @@ function popup({show,data, onClose}: Props) {
         if(show){
             // 打开, 禁止滚动
             body.classList.add('no_scroll')
-            // body.addEventListener('mousemove')
         }else{
             body.classList.remove('no_scroll')
         }
     }, [show]);
+
+    const clickPopupHandle = (e: React.MouseEvent) => {
+        if(e.target === e.currentTarget){
+            console.log("真正的元素")
+            closeHandle()
+        }
+    }
     return (
         <>
-            <div className={`${sty.popup} ${show ? sty.show : sty.hide}`}>
+            <div onClick={clickPopupHandle} className={`${sty.popup} ${show ? sty.show : sty.hide}`}>
                 {
                     data && <div className={`${sty.container}`}>
                         {/*关闭按钮*/}
@@ -49,9 +55,11 @@ function popup({show,data, onClose}: Props) {
                                 </p>
                             }
                             <p className={sty.links}>
-                                <Link target="_blank" href={`/details/${data.name}`}>
-                                    详情页面
-                                </Link>
+                                {
+                                    data.isDetailsPath && <Link target="_blank" href={`/details/${data.name}`}>
+                                        详情页面
+                                    </Link>
+                                }
                                 <Link target="_blank" href={`${data.url}`}>
                                     官方地址
                                 </Link>
