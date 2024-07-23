@@ -5,6 +5,7 @@ import {GetStaticProps} from 'next'
 import {getDetailsPaths} from "../../utils/node";
 
 interface Props {
+    params: {id: string}
     navData: NavT
     res: DetailsT
 }
@@ -98,5 +99,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             navData: data.default,
             res: res.default
         }
+    }
+}
+
+// 导出元信息
+export function generateMetadata({params}: Props){
+    return {
+        title:`DY-Collect ${params.id}`
     }
 }

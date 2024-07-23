@@ -10,8 +10,9 @@ import {search} from "../utils";
 import classifySearchBox from '../components/classification/classifySearchBox';
 import Popup from '../components/global/popup'
 import imgError from '../public/images/img-failure.svg';
-import { getDetailsPaths } from "../utils/node";
+import {getDetailsPaths} from "../utils/node";
 import {PopupData} from "../types";
+import {Metadata} from "next";
 
 interface Props {
     navData: NavT
@@ -120,15 +121,7 @@ export default function Classification(props: Props) {
     /**
      * 全部资源数据
      * */
-    const [db, setDb] = useState(props.db)
-
-    /**
-     * 获取网站的icon */
-    function getIcon(url: string) {
-        // const __LINK__ = "https://www.favicon.vip/get.php?url=";
-        const __LINK__ = "http://icon.hhpp.net/get.php?url=";
-        return `${__LINK__}${url}`
-    }
+    const [db] = useState(props.db)
 
     // TODO: 网络图片加载失败, 替换成本地"错误"图片 -功能
     const handleImgLoadError = (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -141,8 +134,6 @@ export default function Classification(props: Props) {
     const [isSearching, setSearching] = useState({value: false});
     // 搜索结果 -stata
     const [searchRes, setSearchRes] = useState<DbT["list"]>([]);
-    // 搜索框内容 -stata
-    const [value, setValue] = useState('')
     // 去搜索 -函数
     function toSearch(key: string){
         if(key.trim()){ // 有值, 去搜索
@@ -168,7 +159,7 @@ export default function Classification(props: Props) {
         if(!a){
             return
         }
-        const infoEl = a.querySelector('.resource_info') as HTMLDivElement;;
+        const infoEl = a.querySelector('.resource_info') as HTMLDivElement;
         setW(infoEl.getBoundingClientRect().width -8 + 'px')
     }
     // 组件挂载之后执行
@@ -200,11 +191,6 @@ export default function Classification(props: Props) {
         }
         // 全部数据
         let list = db.list;
-        const resList = list.filter(item => {
-            // 筛选符合条件的项目
-            return _filter(item)
-        })
-
         /**筛选函数, 判断通过则符合筛选结果 */
         function _filter(item: DbT["list"][number]) {
             // let tempBool = false;
@@ -222,14 +208,13 @@ export default function Classification(props: Props) {
             for (let str of clasArray) {
                 newTypeList.includes(str) && through++;
             }
-            if(through === clasArray.length){
-                return true;
-            }else{
-                return false;
-            }
+            return through === clasArray.length;
         }
 
-        return resList
+        return list.filter(item => {
+            // 筛选符合条件的项目
+            return _filter(item)
+        })
     }, [db, clas, isSearching])
 
     // db数据列表渲染的item,res中是否有该项
@@ -244,9 +229,18 @@ export default function Classification(props: Props) {
      * 点击a标签事件
      */
     const clickHandle = (e: React.MouseEvent, name: string) => {
-        e.preventDefault(); // 先阻止默认跳转事件
+        // 先阻止默认跳转事件
+        e.preventDefault();
+        if(e.ctrlKey){
+            // 按住ctrl点击, 直接跳转
+            const tempAEl = document.createElement('a') as HTMLAnchorElement;
+            tempAEl.setAttribute("target", "_blank");
+            tempAEl.href = (e.currentTarget as HTMLAnchorElement).href
+            tempAEl.click();
+            return;
+        }
         const data = props.db.list.filter(item => item.name === name)[0]
-        var isDetailsPath = false;
+        let isDetailsPath = false;
         if (props.paths.map(t => t.toLowerCase()).includes(data.name.toLowerCase())) {
             // 没有详情地址
             isDetailsPath = true
@@ -268,7 +262,7 @@ export default function Classification(props: Props) {
                         db.list.map(t => {
                             return <a key={t.name}
                                       title={t.info + '\n' +'标签：'+ t?.tag?.toString() }
-                                      href={`/details/${t.name}`}
+                                      href={t.url}
                                       target="_blank"
                                       data-source={t.url}
                                       onClick={(e) => clickHandle(e, t.name)}
@@ -283,7 +277,6 @@ export default function Classification(props: Props) {
                             </a>
                         })
                     }
-
                 </section>
             </div>
             <Popup show={show} data={popupData} onClose={() => {setShow(false)}}></Popup>
@@ -306,4 +299,10 @@ export async function getStaticProps() {
             paths,
         }
     }
+}
+
+
+// 导出元信息
+export const metadata: Metadata = {
+    title: "DY-Collect 探索"
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import homeStyle from "../styles/modules/home.module.css";
 import NavigationBar from "../components/global/navigationBar";
 import Link from "next/link";
-
+import type { Metadata } from "next";
 
 function Index(props: {navData: NavT}) {
     return (
@@ -20,7 +20,10 @@ function Index(props: {navData: NavT}) {
                         </p>
                     </div>
                     <div className={`${homeStyle.main_img}`}>
-                        <img loading={"lazy"} data-src="./images/home.png" src="./images/home.png" alt="首页主题图片"/>
+                        <img loading={"lazy"}
+                             data-src="./images/home.png"
+                             src="./images/home.png"
+                             alt="首页主题图片"/>
                     </div>
                 </section>
             </main>
@@ -40,3 +43,7 @@ export async function getStaticProps() {
     };
 }
 
+// 导出元信息
+export const metadata: Metadata = {
+    title: "Dy-Collect 首页"
+}
